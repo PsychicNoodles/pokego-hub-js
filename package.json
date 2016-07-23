@@ -1,0 +1,29 @@
+{
+  "name": "pokego-hub-js",
+  "version": "1.0.0",
+  "description": "JS project for dynamic maps and other results in pokego-hub",
+  "scripts": {
+    "build": "browserify -t coffee-reactify --extension='.cjsx' --debug -o app.js app.cjsx",
+    "watch": "watchify -t coffee-reactify --extension='.cjsx' --debug -o app.js app.cjsx"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PsychicNoodles/pokego-hub-js.git"
+  },
+  "author": "Mattori Birnbaum",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PsychicNoodles/pokego-hub-js/issues"
+  },
+  "homepage": "https://github.com/PsychicNoodles/pokego-hub-js#readme",
+  "dependencies": {
+    "browserify": "^13.0.1",
+    "coffee-reactify": "^5.0.0",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-google-maps": "^4.11.0"
+  },
+  "devDependencies": {
+    "watchify": "^3.7.0"
+  }
+}
