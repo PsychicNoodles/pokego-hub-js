@@ -66,7 +66,6 @@ module.exports = React.createClass
         snackOpen: true
 
   goHome: ->
-    console.log 'going home'
     @setState
       center: @props.center
 
