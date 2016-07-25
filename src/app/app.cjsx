@@ -4,10 +4,11 @@ require('react-tap-event-plugin')()
 React = require('react')
 ReactDOM = require('react-dom')
 AppBar = require('./app-bar')
+Map = require('./map')
 
 MuiThemeProvider = require('material-ui/styles/MuiThemeProvider').default
 
-GreetBox = React.createClass
+App = React.createClass
   getInitialState: ->
     settings:
       pokemon: true
@@ -17,9 +18,12 @@ GreetBox = React.createClass
 
   render: ->
     <MuiThemeProvider>
-      <AppBar location='Grinnell' settings={@state.settings}
-              saveSettings={@saveSettings} />
+      <div>
+        <AppBar location='Grinnell' settings={@state.settings}
+                saveSettings={@saveSettings} />
+        <Map />
+      </div>
     </MuiThemeProvider>
 
-element = React.createElement(GreetBox, name: "World", "Lorem ipsum")
+element = React.createElement(App)
 ReactDOM.render(element, document.getElementById 'app')
