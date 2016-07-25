@@ -3,7 +3,7 @@ React = require('react')
   InfoWindow } = require('react-google-maps')
 
 module.exports = React.createClass
-  geolocation: navigation.geolocation or {
+  geolocation: navigator.geolocation or {
     getCurrentPosition: (success, failure) ->
       failure("Your browser doesn't support geolocation.")
   }
