@@ -37,7 +37,7 @@ findLocationDivStyle =
 module.exports = React.createClass
   getInitialState: ->
     center: @props.center
-    status: null
+    status: "All's good"
     centerGeolocation: false # if the center is at the user's geolocation
     findLocationBtnStyle: findLocationBtnStyle
     snackOpen: false
@@ -48,12 +48,15 @@ module.exports = React.createClass
       @setState
         center:
           {lat, lng}
-        status: 'Location found using HTML5'
-      success()
+        status: "Location found (lat: #{lat}, lng: #{lng})"
+      ,
+        success
     , =>
       (reason) =>
         @setState
           status: "Error: the geolocation service failed (#{reason})"
+    ,
+      enableHighAccuracy: true
 
   onCenterBtnClick: ->
     @centerOnLocation =>
@@ -78,7 +81,7 @@ module.exports = React.createClass
                            </button>
                          </CustomControl>
                          <CustomControl controlPosition={google.maps.ControlPosition.BOTTOM_CENTER}>
-                           <Snackbar open={@state.snackOpen} message='Hi there'
+                           <Snackbar open={@state.snackOpen} message={@state.status}
                                      onRequestClose={=> @setState snackOpen: false} />
                          </CustomControl>
                        </GoogleMap>
