@@ -65,24 +65,35 @@ module.exports = React.createClass
           backgroundPosition: '-18px 0px'
         snackOpen: true
 
+  goHome: ->
+    console.log 'going home'
+    @setState
+      center: @props.center
+
   render: ->
     <GoogleMapLoader containerElement={<div style={{height: '100%'}} />}
                      googleMapElement={
                        <GoogleMap defaultZoom={@props.zoom}
-                                  defaultCenter={@state.center}
+                                  center={@state.center}
                                   onClick={@onClick}>
-                         <CustomControl controlPosition={google.maps.ControlPosition.RIGHT_BOTTOM}>
-                           <FloatingActionButton onTouchTap={-> console.log 'yo'}><ActionHome /></FloatingActionButton>
-                         </CustomControl>
                          <CustomControl controlPosition={google.maps.ControlPosition.RIGHT_BOTTOM}>
                            <button style={findLocationBtnStyle} title='Your Location'
                                    onClick={@onCenterBtnClick}>
                              <div style={findLocationDivStyle} />
                            </button>
                          </CustomControl>
+                         <CustomControl controlPosition={google.maps.ControlPosition.RIGHT_BOTTOM}>
+                           <FloatingActionButton onTouchTap={@goHome}
+                             style={marginBottom: '10px', marginRight: '5px'}>
+                             <ActionHome />
+                           </FloatingActionButton>
+                         </CustomControl>
                          <CustomControl controlPosition={google.maps.ControlPosition.BOTTOM_CENTER}>
                            <Snackbar open={@state.snackOpen} message={@state.status}
                                      onRequestClose={=> @setState snackOpen: false} />
                          </CustomControl>
+                         <Marker defaultPosition={@state.center}
+                                 title={if @state.centerOnLocation then 'You are here' \
+                                        else @props.location} />
                        </GoogleMap>
                      }/>

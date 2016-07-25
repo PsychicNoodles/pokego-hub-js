@@ -23,7 +23,8 @@ App = React.createClass
       <div>
         <AppBar location='Grinnell' settings={@state.settings}
                 saveSettings={@saveSettings} />
-        <Map zoom={16} center={lat: 41.7497, lng: -92.7195} />
+        <Map zoom={16} center={lat: 41.7497, lng: -92.7195} location='Grinnell'
+             settings={@state.settings} />
         <Divider />
         <Card>
           <CardText>What up there will be more content here</CardText>
